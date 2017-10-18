@@ -8,10 +8,11 @@ import java.util.*;
  */
 public class PlantEater extends AbstOrganism
 {
+    
     public PlantEater(){
         prey = new ArrayList <Object>();
         predators = new ArrayList <Object>();
-        
+        lifespan = lifespan = Greenfoot.getRandomNumber(900)+900;
         trophicLevel = 0;
         age = 0;
         repro_energy = 100;
@@ -33,7 +34,7 @@ public class PlantEater extends AbstOrganism
  
    
     //boolean target = false;
-
+    int []newDna;
     public ArrayList <Algae> target;
     public boolean tracking = false;
     public Algae alg = new Algae();
@@ -99,8 +100,8 @@ public class PlantEater extends AbstOrganism
                 energy += alg.energy*0.09;
                 removeTouching(Algae.class);
                 target.remove(i);
-                lifeforms.remove(this);
-                System.out.println("energy" + energy);
+                lifeforms.remove(i);
+                //System.out.println("energy" + energy);
                 // MyWorld.AbstOrganism.lifeforms--;
                 target = (ArrayList) getWorld().getObjects(Algae.class);
             }
@@ -120,12 +121,13 @@ public class PlantEater extends AbstOrganism
         //world.showText("Age: "+age, 300,100);
         //and check to see if past lifespan
         
-        if(age>= Greenfoot.getRandomNumber(900)+900){
-            // die();
+        if(age>= lifespan){
+             die();
         }
        
     }
-    public void mutate(){
+    public void mutate(int parentLifespan,int repro_energy,int def){
+        newDna = Mutate.mutatePlantEater(parentLifespan,repro_energy,def);
         
     }
     public void reproduce(){
@@ -135,7 +137,10 @@ public class PlantEater extends AbstOrganism
                
                 for(int i =0; i<numKids; i++){ //make a number of tempkids
                 PlantEater tempKidP = new PlantEater();  //set algae to tempKid
-                
+                mutate((int)this.speed,(int)this.sight,(int)this.repro_energy);
+                tempKidP.speed = newDna[0];
+                tempKidP.sight = newDna[1];
+                tempKidP.repro_energy = newDna[2];
                 world.addObject(tempKidP,getX(),getY()); //spawn a new tempKid
                 lifeforms.add(tempKidP); //add the new kid to the lifeforms array
                 tempKidP.turn(Greenfoot.getRandomNumber(359)+1);   //make it turn once it respawns
