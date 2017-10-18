@@ -10,7 +10,7 @@ public class Authors extends AbstButton
 {
     // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
     public Authors(){
-        super("BY: Ryan Brandrick, Keagan Flower, Sam, Hector Salermo, Karthik Gurram", 25);
+        super("BY: Ryan, Keagan, Sam, Hector, Karthik", 25);
     }
     
     public void onClick(){
