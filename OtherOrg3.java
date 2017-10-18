@@ -6,9 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class OtherOrg3 extends AbstButton
+public class OtherOrg2 extends AbstButton
 {
-    public OtherOrg3(){
+    public OtherOrg2(){
         //Replace "Org2" iwth the name of the new organism. Ie. Plant Eater.
         super("Org2", 30);
     }
