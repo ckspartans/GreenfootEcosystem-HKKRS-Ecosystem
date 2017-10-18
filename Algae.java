@@ -12,13 +12,14 @@ public class Algae extends AbstOrganism
 {
     Color edge = new Color(0,0,0);
     Color fill = new Color(50,250,50);
+    int [] newDna;
     public Algae(){
         prey = new ArrayList <Object>();
         predators = new ArrayList <Object>();
         trophicLevel = 0;
         age = 0;
         repro_energy = 100;
-        
+        lifespan = Greenfoot.getRandomNumber(900)+900;
         health = 100;
         energy = 10;
         siz =  (int)(0.2*energy+10.);
@@ -65,7 +66,7 @@ public class Algae extends AbstOrganism
         }else{
             energy += 0.5;
         }   
-        world.showText("energy: "+energy, 100,100);
+        //world.showText("energy: "+energy, 100,100);
         //say("Feed not implemented");
     }
 
@@ -100,7 +101,9 @@ public class Algae extends AbstOrganism
             for(int i =0; i<numKids; i++){ //make a number of tempkids
                 Algae tempKid = new Algae();  //set algae to tempKid
                 world.addObject(tempKid,getX(),getY()); //spawn a new tempKid
+                mutate((int)this.lifespan,(int)this.repro_energy,this.def); //mutate the dna of parent
                 
+                tempKid.lifespan = newDna[0]; //set
                 lifeforms.add(tempKid); //add the new kid to the lifeforms array
                 
                 tempKid.turn(Greenfoot.getRandomNumber(359)+1);   //make it turn once it respawns
@@ -122,10 +125,10 @@ public class Algae extends AbstOrganism
     public void age(){
         //increase age
         age ++;
-        world.showText("Age: "+age, 300,100);
+        //world.showText("Age: "+age, 300,100);
         //and check to see if past lifespan
-            if (AbstOrganism.lifeforms.size() >= 4){
-                if(age>= Greenfoot.getRandomNumber(900)+900){
+            if (AbstOrganism.lifeforms.size() >= 4){ //they will only die from age if theres more than 4 lifeforms
+                if(age>= lifespan){// they will only die if they ve lived from 900 to 1800 frames
                     die();
                 }
             }//if then kill them
@@ -146,8 +149,8 @@ public class Algae extends AbstOrganism
         //say("Move not implemented");
     }
     
-    public void mutate(){
-        //need a way to change the specific values and rubber band them
-        //say("Mutate not implemented");
+    
+    public void mutate(int parentLifespan,int repro_energy,int def){
+        newDna = Mutate.mutateAlgae(parentLifespan,repro_energy,def); //send dna of parent organism to be mutated and put new values in array
     }
 }
