@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Write a description of class AbstOrganism here.
  * 
- * @author Rowbottom 
+ * @author Hector, Keagan, Karthik, Ryan, Sam 
  * @version Sept. 27 2017
  */
 public abstract class AbstOrganism extends Actor{
