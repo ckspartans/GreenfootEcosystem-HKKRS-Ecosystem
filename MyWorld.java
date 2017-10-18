@@ -48,7 +48,7 @@ public class MyWorld extends World
            showText("Lifeforms " + AbstOrganism.lifeforms.size(), 250, 20);
            
         }
-        showText("Algae Eaten: " + foodEaten, 90,20); 
+        //showText("Algae Eaten: " + foodEaten, 90,20); 
     }
     
     public static float getDist(Actor a, Actor b){
