@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 /**
- * Write a description of class AbstOrgansim here.
+ * Write a description of class AbstOrganism here.
  * 
  * @author Rowbottom 
  * @version Sept. 27 2017
@@ -16,10 +16,11 @@ public abstract class AbstOrganism extends Actor{
     public int lifespan;
     public double repro_energy;
     public int siz;
+    public int sight;
     static public GreenfootImage [] imgs; //animation capabilities
     public double health;
     public double energy;
-    public double speed;
+    public int speed;
     public int att;
     public int def;
     public double mutation_rate;
@@ -37,7 +38,7 @@ public abstract class AbstOrganism extends Actor{
     
     public abstract void move();
     
-    public abstract void mutate();  
+    public abstract void mutate(int a, int b, int c);  
     
     public void say(String phrase){
         System.out.println(phrase);
